@@ -1,0 +1,11 @@
+# Build files
+build/
+
+# Data files
+data/
+
+# VSCode
+.vscode/
+
+# Descriptions
+**/DESCRIPTION.md
