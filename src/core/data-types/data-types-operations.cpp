@@ -7,7 +7,7 @@
 Book makeBook(const std::string &isbn, const std::string &title, const std::string &authors,
               unsigned int pages, std::chrono::year_month_day startDate)
 {
-    return Book{isbn, title, authors, pages, 0, startDate};
+    return Book{isbn, title, authors, pages, 0, startDate, {}};
 }
 
 void addBook(BookCollection &collection, const Book &book)
