@@ -166,8 +166,8 @@ BookCollection loadCollection(const std::string &filename)
             isbn,
             title,
             authors,
-            std::stoul(pagesStr),
-            std::stoul(pagesReadStr),
+            static_cast<unsigned int>(std::stoul(pagesStr)),
+            static_cast<unsigned int>(std::stoul(pagesReadStr)),
             stringToDate(startDateStr),
             stringToDate(endDateStr)};
 
