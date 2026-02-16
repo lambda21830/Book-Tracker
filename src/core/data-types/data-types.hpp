@@ -9,7 +9,7 @@ struct Book
 {
     std::string isbn;
     std::string title;
-    std::vector<std::string> authors;
+    std::string authors;
     unsigned int pages;
     unsigned int pagesRead;
     std::chrono::year_month_day startDate;

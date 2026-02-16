@@ -4,7 +4,7 @@
 #include <chrono>
 #include <algorithm>
 
-Book makeBook(const std::string &isbn, const std::string &title, const std::vector<std::string> &authors,
+Book makeBook(const std::string &isbn, const std::string &title, const std::string &authors,
               unsigned int pages, std::chrono::year_month_day startDate)
 {
     return Book{isbn, title, authors, pages};

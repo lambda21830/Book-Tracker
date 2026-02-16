@@ -6,7 +6,7 @@
 #include <vector>
 #include <chrono>
 
-Book makeBook(const std::string &isbn, const std::string &title, const std::vector<std::string> &authors,
+Book makeBook(const std::string &isbn, const std::string &title, const std::string &authors,
               unsigned int pages, std::chrono::year_month_day startDate);
 
 void addBook(BookCollection &collection, const Book &book);
