@@ -13,7 +13,7 @@ void addBook(BookCollection &collection, const Book &book);
 
 bool removeBook(BookCollection &collection, const std::string &isbn);
 
-Book *findBook(const BookCollection &collection, const std::string &isbn);
+Book *findBook(BookCollection &collection, const std::string &isbn);
 
 bool addPagesRead(BookCollection &collection, const std::string &isbn, unsigned int pages);
 
