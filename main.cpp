@@ -1,14 +1,30 @@
 #include "src/core/data-types/data-types.hpp"
 #include "src/core/disk/disk-operations.hpp"
 #include "src/cli/cli-operations.hpp"
-
-const std::string DATA_FILE = "books.csv";
+#include <filesystem>
+#include <iostream>
 
 int main()
 {
-    BookCollection collection = loadCollection(DATA_FILE);
+    std::string folder = "data";
+    std::string filename = folder + "/books.csv";
 
-    runMenuLoop(collection, DATA_FILE);
+    try
+    {
+        if (!std::filesystem::exists(folder))
+        {
+            std::filesystem::create_directory(folder);
+        }
+    }
+
+    catch (const std::filesystem::filesystem_error &e)
+    {
+        std::cerr << RED << "Error: " << NC << "Can't create folder: " << e.what() << std::endl;
+    }
+
+    BookCollection collection = loadCollection(filename);
+
+    runMenuLoop(collection, filename);
     displayGoodbye();
 
     return 0;
