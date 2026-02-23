@@ -19,7 +19,7 @@ std::string dateToString(std::chrono::year_month_day date)
 
 std::chrono::year_month_day stringToDate(const std::string &str)
 {
-    if (str.empty() || str == "0-0-0")
+    if (str.empty() || str == "N/A")
     {
         return std::chrono::year_month_day{};
     }
