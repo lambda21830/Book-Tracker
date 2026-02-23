@@ -1,4 +1,4 @@
-# Book Management System
+# Book Tracker
 
 A basic CLI app written in C++ to keep track of your books with ease!
 
@@ -6,5 +6,5 @@ A basic CLI app written in C++ to keep track of your books with ease!
 
 Open the terminal and run the following commands:
 
-1. **Copy the repository**: `git clone https://github.com/lambda21830/Book-Management-System.git`
+1. **Copy the repository**: `git clone https://github.com/lambda21830/Book-Tracker.git`
 2. **Compile and run**: `make run`
