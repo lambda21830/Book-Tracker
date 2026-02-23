@@ -207,6 +207,30 @@ void handleRemoveBook(BookCollection &collection)
     }
 }
 
+static void printProgress(const Book &book)
+{
+    double progress = book.pages > 0 ? (100.0 * book.pagesRead / book.pages) : 0.0;
+
+    std::cout << " (" << std::fixed << std::setprecision(1);
+
+    if (progress == 0.0)
+    {
+        std::cout << RED << progress;
+    }
+
+    else if (progress == 100.0)
+    {
+        std::cout << GREEN << progress;
+    }
+
+    else
+    {
+        std::cout << YELLOW << progress;
+    }
+
+    std::cout << "%" << NC << ")\n";
+}
+
 void handlePrintBookDetails(BookCollection &collection)
 {
     std::cout << "\n--- BOOK DETAILS ---\n";
@@ -232,13 +256,11 @@ void handlePrintBookDetails(BookCollection &collection)
 
         else
         {
-            double progress = book->pages > 0 ? (100.0 * book->pagesRead / book->pages) : 0.0;
-
             std::cout << "\nTitle:      " << book->title << "\n";
             std::cout << "Authors:    " << book->authors << "\n";
             std::cout << "ISBN:       " << book->isbn << "\n";
-            std::cout << "Pages:      " << book->pagesRead << " / " << book->pages
-                      << " (" << std::fixed << std::setprecision(1) << progress << "%)\n";
+            std::cout << "Pages:      " << book->pagesRead << " / " << book->pages;
+            printProgress(*book);
             std::cout << "Start date: " << dateToString(book->startDate) << "\n";
             std::cout << "End date:   " << dateToString(book->endDate) << "\n";
         }
@@ -260,10 +282,8 @@ void handleListAllBooks(const BookCollection &collection)
 
         for (const Book &book : collection)
         {
-            double progress = book.pages > 0 ? (100.0 * book.pagesRead / book.pages) : 0.0;
-
-            std::cout << "  [" << book.isbn << "] " << book.title << " by " << book.authors
-                      << " - " << std::fixed << std::setprecision(1) << progress << "% complete\n";
+            std::cout << "  [" << book.isbn << "] " << book.title << " by " << book.authors;
+            printProgress(book);
         }
 
         std::cout << std::endl;
