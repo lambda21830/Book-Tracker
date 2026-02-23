@@ -53,6 +53,18 @@ bool addPagesRead(BookCollection &collection, const std::string &isbn, unsigned 
 
     book->pagesRead += pages;
 
+    if ((book->pagesRead - pages == 0) && !book->startDate.ok())
+    {
+        auto now = std::chrono::current_zone()->to_local(std::chrono::system_clock::now());
+        book->startDate = std::chrono::year_month_day{std::chrono::floor<std::chrono::days>(now)};
+    }
+
+    if (book->pagesRead == book->pages)
+    {
+        auto now = std::chrono::current_zone()->to_local(std::chrono::system_clock::now());
+        book->endDate = std::chrono::year_month_day{std::chrono::floor<std::chrono::days>(now)};
+    }
+
     if (book->pagesRead > book->pages)
     {
         book->pagesRead = book->pages;
