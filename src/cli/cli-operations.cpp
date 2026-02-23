@@ -53,7 +53,7 @@ void displayMenu()
     displayTitle();
 
     std::cout << "1. Add a book\n";
-    std::cout << "2. Add pages read\n";
+    std::cout << "2. Set pages read\n";
     std::cout << "3. Remove a book\n";
     std::cout << "4. Print book details\n";
     std::cout << "5. List all books\n";
@@ -146,7 +146,7 @@ void handleAddBook(BookCollection &collection)
 
 void handleAddPagesRead(BookCollection &collection)
 {
-    std::cout << "\n--- ADD PAGES READ ---\n";
+    std::cout << "\n--- SET PAGES READ ---\n";
 
     if (collection.empty())
     {
@@ -167,7 +167,7 @@ void handleAddPagesRead(BookCollection &collection)
 
         if (setPagesRead(collection, isbn, pages))
         {
-            std::cout << GREEN << "Pages added successfully!\n"
+            std::cout << GREEN << "Pages read set up successfully!\n"
                       << NC;
         }
 
