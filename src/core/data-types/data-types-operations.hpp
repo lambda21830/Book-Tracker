@@ -15,6 +15,6 @@ bool removeBook(BookCollection &collection, const std::string &isbn);
 
 Book *findBook(BookCollection &collection, const std::string &isbn);
 
-bool addPagesRead(BookCollection &collection, const std::string &isbn, unsigned int pages);
+bool setPagesRead(BookCollection &collection, const std::string &isbn, unsigned int pages);
 
 #endif

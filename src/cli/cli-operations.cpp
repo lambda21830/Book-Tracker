@@ -165,7 +165,7 @@ void handleAddPagesRead(BookCollection &collection)
         std::cin >> pages;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-        if (addPagesRead(collection, isbn, pages))
+        if (setPagesRead(collection, isbn, pages))
         {
             std::cout << GREEN << "Pages added successfully!\n"
                       << NC;

@@ -42,7 +42,7 @@ Book *findBook(BookCollection &collection, const std::string &isbn)
     return nullptr;
 }
 
-bool addPagesRead(BookCollection &collection, const std::string &isbn, unsigned int pages)
+bool setPagesRead(BookCollection &collection, const std::string &isbn, unsigned int pages)
 {
     Book *book = findBook(collection, isbn);
 
@@ -51,7 +51,7 @@ bool addPagesRead(BookCollection &collection, const std::string &isbn, unsigned 
         return false;
     }
 
-    book->pagesRead += pages;
+    book->pagesRead = pages;
 
     if ((book->pagesRead - pages == 0) && !book->startDate.ok())
     {
