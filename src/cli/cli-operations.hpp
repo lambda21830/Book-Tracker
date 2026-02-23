@@ -25,6 +25,8 @@ int getMenuChoice();
 
 void handleAddBook(BookCollection &collection);
 
+void handleAddPagesRead(BookCollection &collection);
+
 void handleRemoveBook(BookCollection &collection);
 
 void handlePrintBookDetails(BookCollection &collection);

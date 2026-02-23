@@ -53,11 +53,12 @@ void displayMenu()
     displayTitle();
 
     std::cout << "1. Add a book\n";
-    std::cout << "2. Remove a book\n";
-    std::cout << "3. Print book details\n";
-    std::cout << "4. List all books\n";
-    std::cout << "5. Save collection to disk\n";
-    std::cout << "6. Exit\n\n";
+    std::cout << "2. Add pages read\n";
+    std::cout << "3. Remove a book\n";
+    std::cout << "4. Print book details\n";
+    std::cout << "5. List all books\n";
+    std::cout << "6. Save collection to disk\n";
+    std::cout << "7. Exit\n\n";
     std::cout << "Enter your choice: ";
 }
 
@@ -81,7 +82,7 @@ int getMenuChoice()
         {
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-            if (choice >= 1 && choice <= 6)
+            if (choice >= 1 && choice <= 7)
             {
                 clearScreen();
                 return choice;
@@ -94,7 +95,7 @@ int getMenuChoice()
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
 
-        std::cerr << RED << "Error: " << NC << "Please enter a number between 1 and 6\n";
+        std::cerr << RED << "Error: " << NC << "Please enter a number between 1 and 7\n";
         pressAKey();
     }
 }
@@ -141,6 +142,40 @@ void handleAddBook(BookCollection &collection)
 
     std::cout << GREEN << "Book added successfully!\n"
               << NC;
+}
+
+void handleAddPagesRead(BookCollection &collection)
+{
+    std::cout << "\n--- ADD PAGES READ ---\n";
+
+    if (collection.empty())
+    {
+        std::cerr << RED << "Error: " << NC << "No books in collection.\n";
+    }
+
+    else
+    {
+        std::string isbn;
+        unsigned int pages;
+
+        std::cout << "Enter ISBN: ";
+        std::getline(std::cin, isbn);
+
+        std::cout << "Pages: ";
+        std::cin >> pages;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+        if (addPagesRead(collection, isbn, pages))
+        {
+            std::cout << GREEN << "Pages added successfully!\n"
+                      << NC;
+        }
+
+        else
+        {
+            std::cerr << RED << "Error: " << NC << "Book not found with ISBN: " << isbn << "\n";
+        }
+    }
 }
 
 void handleRemoveBook(BookCollection &collection)
@@ -230,6 +265,8 @@ void handleListAllBooks(const BookCollection &collection)
             std::cout << "  [" << book.isbn << "] " << book.title << " by " << book.authors
                       << " - " << std::fixed << std::setprecision(1) << progress << "% complete\n";
         }
+
+        std::cout << std::endl;
     }
 }
 
@@ -278,22 +315,26 @@ void runMenuLoop(BookCollection &collection, const std::string &filename)
             pressAKey();
             break;
         case 2:
-            handleRemoveBook(collection);
+            handleAddPagesRead(collection);
             pressAKey();
             break;
         case 3:
-            handlePrintBookDetails(collection);
+            handleRemoveBook(collection);
             pressAKey();
             break;
         case 4:
-            handleListAllBooks(collection);
+            handlePrintBookDetails(collection);
             pressAKey();
             break;
         case 5:
-            handleStoreCollection(collection, filename);
+            handleListAllBooks(collection);
             pressAKey();
             break;
         case 6:
+            handleStoreCollection(collection, filename);
+            pressAKey();
+            break;
+        case 7:
             running = !handleExit(collection, filename);
             break;
         }
