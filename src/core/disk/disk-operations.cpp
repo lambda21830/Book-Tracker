@@ -4,6 +4,11 @@
 
 std::string dateToString(std::chrono::year_month_day date)
 {
+    if (!date.ok())
+    {
+        return "N/A";
+    }
+
     std::ostringstream oss;
     oss << static_cast<int>(date.year()) << "-"
         << static_cast<unsigned>(date.month()) << "-"
